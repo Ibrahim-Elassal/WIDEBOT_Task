@@ -1,0 +1,61 @@
+
+<div class="content ">
+  <div class="container ">
+
+    <div class="header d-flex justify-content-between">
+      <div class="d-flex align-items-center">
+        <div class="box"></div>
+        <p>Employees Data</p>
+      </div>
+      <img class="border rounded-circle m-3" src="../assets/client-3.png" alt="" width="40" height="40">
+    </div>
+    <div class="content">
+      <h5 class="mt-3">Users List</h5>
+      <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore </p>
+
+      <div class="container-fluid p-0 m-0 ">
+        <table class="table table-striped ">
+          <thead>
+            <tr class="">
+              <th >Photo</th>
+              <th >First Name</th>
+              <th>Last Name</th>
+              <th>Email</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let employee of employees">
+              <td><img [src]="employee.avatar" alt=""></td>
+              <td>{{ employee.first_name }}</td>
+              <td>{{ employee.last_name }}</td>
+              <td class="email">{{ employee.email }}</td>
+              <td><button class="btn btn-primary" (click)="sendEmail(employee.email)"><i class="fa-solid fa-paper-plane"></i>Send Email</button></td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="d-flex justify-content-between ">
+          <p class="ms-5"> {{ (currentPage - 1) * itemsPerPage + 1 }} - {{ currentPage * itemsPerPage }} of {{ totalItems }} items</p>
+          <pagination class="me-5"
+          [totalItems]="totalItems"
+          [itemsPerPage]="itemsPerPage"
+          [boundaryLinks]="false"
+          [directionLinks]="true"
+          [maxSize]="5"
+          [(ngModel)]="currentPage"
+          name="currentPage"
+          previousText="&lsaquo;"
+          nextText="&rsaquo;"
+          (pageChanged)="pageChanged($event)"
+          (pageBoundsCorrection)="pageChanged($event)"
+        ></pagination>
+        </div>
+
+
+
+      </div>
+
+    </div>
+
+  </div>
+</div>
